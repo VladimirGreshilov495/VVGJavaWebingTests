@@ -64,7 +64,6 @@ bin/
 .vscode/
 
 # Module files
-*.iml
 module_1.iml
 
 # Settings
