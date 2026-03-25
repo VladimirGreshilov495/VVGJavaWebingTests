@@ -6,6 +6,22 @@ repositories {
     mavenCentral()
 }
 
+tasks.named('processTestResources') {
+    // Для тестовых ресурсов - не выбрасывать ошибку, а просто игнорировать дубли
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.named('processResources') {
+    // Для обычных ресурсов можно тоже настроить
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+sourceSets {
+    test {
+        resources {
+            srcDir 'src/test/resources'
+        }
+    }
+}
 dependencies {
     // JUnit 5
     implementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
