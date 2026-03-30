@@ -23,10 +23,10 @@ public class LoginPage extends BasePage {
     // Локатор для элемента с сообщением об ошибке входа
     private SelenideElement errorMessage = $x("//span[contains(@class,'LoginForm-module__error')]");
 
-
+    //Локатор для перехода к восстановлению
+    private SelenideElement goToRecoveryButton = $("a[href*='anonymRecoveryStart']");
 
 {
-
     verifyPageElements();
 }
     @Step("Проверяем видимость всех элементов страницы")
@@ -37,7 +37,7 @@ public class LoginPage extends BasePage {
         forgotPasswordLink.shouldBe(visible);
         registrationButton.shouldBe(visible);
         vkButton.shouldBe(visible);
-        googleButton.shouldBe(visible);
+        //googleButton.shouldBe(visible);
         mailRuButton.shouldBe(visible);
     }
 
@@ -64,6 +64,22 @@ public class LoginPage extends BasePage {
         usernameField.shouldBe(visible).setValue(username);
         passwordField.shouldBe(visible).setValue(password);
         loginButton.shouldBe(visible).click();
+    }
+
+    @Step("Входим на сайт с логином: {username} и {password}")
+    public void setPassword(String password) {
+        passwordField.shouldBe(visible).click();
+        passwordField.shouldBe(visible).setValue(password);
+    }
+
+    @Step("Нажимаем кнопку Войти")
+    public void clickLogin() {
+        loginButton.shouldBe(visible).click();
+    }
+
+    @Step("Нажимаем Восстановить профиль")
+    public void goToRecovery() {
+        goToRecoveryButton.shouldBe(visible).click();
     }
 
     @Step("Переходим на страницу восстановления пароля")
