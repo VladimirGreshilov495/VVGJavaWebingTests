@@ -15,7 +15,7 @@ public class BaseTest {
     public static void setUp() {
         baseUrl = determineBaseUrl();
         Configuration.browser = "chrome";
-        Configuration.browserSize = "1920x1080";
+        Configuration.browserSize = "1024x768";
         Configuration.baseUrl = baseUrl;
         Configuration.pageLoadTimeout = 60000;
         Configuration.timeout = 10000;

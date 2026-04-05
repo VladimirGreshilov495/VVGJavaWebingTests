@@ -3,21 +3,20 @@ package core.base;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
+
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
-public class BasePage {
+public abstract class BasePage {
 
     protected SelenideElement headerLogo = $(" [tsid='toolbar_logo'] ");
     protected SelenideElement searchField = $(" [name='st.query'] ");
     protected SelenideElement vkServices = $(" [data-l='t,vk_ecosystem'] ");
     protected SelenideElement acceptCookieButton = $(" #cb_accept ");
     protected SelenideElement acceptPrivacyButton = $(" .cmpbox_btn_yes ");
+    private SelenideElement userDropdown = $x("//a[@class='toolbar_search_suggest-item']");
 
-    @Step("Выполняем поиск по сайту с запросом: {query}")
-    public void search(String query) {
-        searchField.shouldBe(visible).setValue(query).pressEnter();
-    }
 
     @Step("Открываем VK Services")
     public void openVkServices() {
@@ -41,6 +40,12 @@ public class BasePage {
         if (acceptPrivacyButton.exists()) {
             acceptPrivacyButton.click();
         }
+    }
+
+    @Step("Выполняем поиск по сайту с запросом: {query}")
+    public void search(String query) {
+        searchField.shouldBe(visible).setValue(query);
+        userDropdown.shouldBe(visible).click();
     }
 }
 

@@ -4,17 +4,22 @@ import com.codeborne.selenide.SelenideElement;
 import core.base.BasePage;
 import io.qameta.allure.Step;
 
+
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class LoginPage extends BasePage {
+    //Локатор поиск в ОК
+
+
 
     private SelenideElement usernameField = $("[name='st.email']");
     private SelenideElement passwordField = $("[name='st.password']");
     private SelenideElement loginButton = $x("//div[contains(@class,'LoginForm-module__root')]//button[@type='submit']");
     private SelenideElement forgotPasswordLink = $("button.vkuiLink__host");
     private SelenideElement registrationButton = $x("//div[contains(@class,'LoginFormMain-module__bottom')]//button[@type='button']");
+
     // Локаторы для кнопок соцсетей
     private SelenideElement vkButton = $(" [data-l='t,vkc'] ");
     private SelenideElement googleButton = $(" [data-l='t,google'] ");
@@ -25,6 +30,12 @@ public class LoginPage extends BasePage {
 
     //Локатор для перехода к восстановлению
     private SelenideElement goToRecoveryButton = $("a[href*='anonymRecoveryStart']");
+
+    //Локатор Войти по QR-коду
+    private SelenideElement qrcodeButton = $x("//*[contains(@class, 'filter-tab-qrCode')][contains(@class, 'js-login-qrCode')]");
+
+    //Локатор ссылка "Не получается войти"
+    private SelenideElement goToCanNotEntryButton = $x("//span[contains(@class,'common-module__centered___tKWXI')]");
 
 {
     verifyPageElements();
@@ -46,8 +57,6 @@ public class LoginPage extends BasePage {
         return errorMessage.shouldBe(visible).exists();
     }
 
-
-
     @Step("Получаем текст сообщения об ошибке входа")
     public String getErrorMessageText() {
         return errorMessage.shouldBe(visible).getText();
@@ -57,6 +66,9 @@ public class LoginPage extends BasePage {
     public String getErrorLoginMessageText() {
         return errorMessage.shouldBe(visible).getText();
     }
+
+
+
 
     @Step("Входим на сайт с логином: {username} и {password}")
     public void login(String username, String password) {
@@ -82,6 +94,17 @@ public class LoginPage extends BasePage {
         goToRecoveryButton.shouldBe(visible).click();
     }
 
+    @Step("Нажимаем Не получается войти")
+    public void goToCanNotEntry() {
+        goToCanNotEntryButton.shouldBe(visible).click();
+    }
+
+    @Step("Переходим на страницу QR-код")
+    public void openQrcodePage() {qrcodeButton.shouldBe(visible).click(); }
+
+
+
+
     @Step("Переходим на страницу восстановления пароля")
     public void openForgotPasswordPage() {
         forgotPasswordLink.shouldBe(visible).click();
@@ -91,6 +114,7 @@ public class LoginPage extends BasePage {
     public void openRegistrationPage() {
         registrationButton.shouldBe(visible).click();
     }
+
 
     // Методы для перехода на страницы авторизации через соцсети
     @Step("Входим на сайт через ВКонтакте")

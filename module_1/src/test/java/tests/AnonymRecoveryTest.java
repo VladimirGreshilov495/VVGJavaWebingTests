@@ -21,6 +21,20 @@ public class AnonymRecoveryTest extends BaseTest {
         loginPage.acceptCookie();
         loginPage.acceptPrivacyButton();
     }
+
+
+    @Test
+    public void anonymSupportTest() throws InterruptedException {
+
+        loginPage.goToCanNotEntry();
+        anonymRecoveryPage = new AnonymRecoveryPage();
+        anonymRecoveryPage.goToSupport();
+        anonymRecoveryPage.supportChat();
+        anonymRecoveryPage.exitChat();
+        anonymRecoveryPage.approveExitChat();
+
+    }
+
     @Test
     public void anonymRecoveryTest() {
         loginPage.login("incorrectUser", "incorrectPassword");
@@ -34,6 +48,8 @@ public class AnonymRecoveryTest extends BaseTest {
         anonymRecoveryPage = new AnonymRecoveryPage();
 
     }
+
+
 
     @Test
     public void anonymRecoveryPhoneTest() {
