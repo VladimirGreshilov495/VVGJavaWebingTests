@@ -1,24 +1,24 @@
-package tests;
+package tests.web;
 
 import core.base.BaseTest;
-import core.pages.LoginPage;
+import core.pages.web.WebLoginPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Configuration.baseUrl;
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class LoginWithWrongCredentials extends BaseTest {
+public class WebLoginWithWrongCredentialsTest extends BaseTest {
 
-    private static LoginPage loginPage;
+    private static WebLoginPage loginPage;
 
     @BeforeEach
     public void prepare() {
         open(baseUrl);
         // Принятие cookies и политики
-        loginPage = new LoginPage();
+        loginPage = new WebLoginPage();
         loginPage.acceptCookie();
         loginPage.acceptPrivacyButton();
     }
@@ -36,6 +36,8 @@ public class LoginWithWrongCredentials extends BaseTest {
         String actualErrorMessage = loginPage.getErrorMessageText();
         assertEquals(expectedErrorMessage, actualErrorMessage, "Текст сообщения об ошибке не совпадает");
     }
+
+
 
     @Test
     public void emptyLoginTest() {
