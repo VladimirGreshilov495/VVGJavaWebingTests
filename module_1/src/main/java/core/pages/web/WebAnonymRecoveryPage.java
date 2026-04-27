@@ -1,4 +1,4 @@
-package core.pages;
+package core.pages.web;
 import com.codeborne.selenide.SelenideElement;
 import core.base.BasePage;
 import io.qameta.allure.Step;
@@ -6,11 +6,9 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
-public class AnonymRecoveryPage extends BasePage {
+public class WebAnonymRecoveryPage extends BasePage {
 
     private SelenideElement recoveryByPhoneButton = $x("//a[@data-l='t,phone']");
     // Кнопка "Почта"

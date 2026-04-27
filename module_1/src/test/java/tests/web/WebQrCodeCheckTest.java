@@ -1,23 +1,22 @@
-package tests;
+package tests.web;
 import core.base.BaseTest;
-import core.pages.AnonymRecoveryPage;
-import core.pages.QrcodePage;
-import core.pages.LoginPage;
+import core.pages.web.WebQrcodePage;
+import core.pages.web.WebLoginPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class QrCodeCheckTest extends BaseTest {
+public class WebQrCodeCheckTest extends BaseTest {
 
-    private static LoginPage loginPage;
-    private static QrcodePage qrcodePage;
+    private static WebLoginPage loginPage;
+    private static WebQrcodePage qrcodePage;
 
     @BeforeEach
     public void prepare() {
         open(baseUrl);
         //Принятие cookies и политики
-        loginPage = new LoginPage();
+        loginPage = new WebLoginPage();
         loginPage.acceptCookie();
         loginPage.acceptPrivacyButton();
     }
@@ -26,7 +25,7 @@ public class QrCodeCheckTest extends BaseTest {
     public void QrcodeCheckTest() {
         loginPage.openQrcodePage();
 
-        qrcodePage = new QrcodePage();
+        qrcodePage = new WebQrcodePage();
         qrcodePage.clickToQrcode();
 
 

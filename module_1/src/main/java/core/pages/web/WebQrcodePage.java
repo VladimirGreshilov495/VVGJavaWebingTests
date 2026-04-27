@@ -1,17 +1,15 @@
-package core.pages;
+package core.pages.web;
 
 import com.codeborne.selenide.SelenideElement;
 import core.base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
-import java.time.Duration;
-
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class QrcodePage extends BasePage {
+public class WebQrcodePage extends BasePage {
 
     private SelenideElement qrCodePicture = $x("//*[contains(@class, 'qr_code_image')]");
     SelenideElement qrCodeImage = $(By.xpath("//img[@class='qr_code_image']"));

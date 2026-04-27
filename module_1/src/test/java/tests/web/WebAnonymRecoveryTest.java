@@ -1,23 +1,23 @@
-package tests;
+package tests.web;
 import core.base.BaseTest;
-import core.pages.RecoveryByPhonePage;
-import core.pages.AnonymRecoveryPage;
-import core.pages.LoginPage;
+import core.pages.web.WebRecoveryByPhonePage;
+import core.pages.web.WebAnonymRecoveryPage;
+import core.pages.web.WebLoginPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AnonymRecoveryTest extends BaseTest {
+public class WebAnonymRecoveryTest extends BaseTest {
 
-    private static LoginPage loginPage;
-    private static AnonymRecoveryPage anonymRecoveryPage;
+    private static WebLoginPage loginPage;
+    private static WebAnonymRecoveryPage anonymRecoveryPage;
 
     @BeforeEach
     public void prepare() {
         open(baseUrl);
         //Принятие cookies и политики
-        loginPage = new LoginPage();
+        loginPage = new WebLoginPage();
         loginPage.acceptCookie();
         loginPage.acceptPrivacyButton();
     }
@@ -27,7 +27,7 @@ public class AnonymRecoveryTest extends BaseTest {
     public void anonymSupportTest() throws InterruptedException {
 
         loginPage.goToCanNotEntry();
-        anonymRecoveryPage = new AnonymRecoveryPage();
+        anonymRecoveryPage = new WebAnonymRecoveryPage();
         anonymRecoveryPage.goToSupport();
         anonymRecoveryPage.supportChat();
         anonymRecoveryPage.exitChat();
@@ -45,7 +45,7 @@ public class AnonymRecoveryTest extends BaseTest {
         }
 
         loginPage.goToRecovery();
-        anonymRecoveryPage = new AnonymRecoveryPage();
+        anonymRecoveryPage = new WebAnonymRecoveryPage();
 
     }
 
@@ -61,7 +61,7 @@ public class AnonymRecoveryTest extends BaseTest {
         }
 
         loginPage.goToRecovery();
-        anonymRecoveryPage = new AnonymRecoveryPage();
+        anonymRecoveryPage = new WebAnonymRecoveryPage();
         anonymRecoveryPage.goToRecoveryByPhone();
     }
 
@@ -75,7 +75,7 @@ public class AnonymRecoveryTest extends BaseTest {
         }
 
         loginPage.goToRecovery();
-        anonymRecoveryPage = new AnonymRecoveryPage();
+        anonymRecoveryPage = new WebAnonymRecoveryPage();
         anonymRecoveryPage.goToRecoveryByEmail();
 
     }
@@ -89,9 +89,9 @@ public class AnonymRecoveryTest extends BaseTest {
         }
 
         loginPage.goToRecovery();
-        anonymRecoveryPage = new AnonymRecoveryPage();
+        anonymRecoveryPage = new WebAnonymRecoveryPage();
         anonymRecoveryPage.goToRecoveryByPhone();
-        RecoveryByPhonePage recoveryByPhone = new RecoveryByPhonePage();
+        WebRecoveryByPhonePage recoveryByPhone = new WebRecoveryByPhonePage();
         String countryCode = recoveryByPhone.selectCountryByName("Россия");
         assertEquals("+7", countryCode, "Код страны не совпадает с ожидаемым");
         String errorPhone = recoveryByPhone.selectPhoneNumber("99999");
